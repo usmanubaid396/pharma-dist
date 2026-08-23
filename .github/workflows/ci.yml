@@ -1,0 +1,9 @@
+- name: Generate Prisma Client
+  run: npx prisma generate
+
+- name: Build Next.js app
+  env:
+    DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
+    NEXTAUTH_SECRET: "dummy-secret-for-build-step-only-12345"
+    NEXTAUTH_URL: "http://localhost:3000"
+  run: npm run build
