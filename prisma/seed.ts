@@ -5,16 +5,15 @@ const prisma = new PrismaClient();
 
 async function main() {
   const adminPassword = await bcrypt.hash("Admin@12345", 12);
-  const repPassword = await bcrypt.hash("Rep@12345", 12);
 
-  // 1. Create Punjab Region & Vehari / Lahore Territories
+  // 1. Create Region & Territory
   const punjab = await prisma.region.upsert({
     where: { name: "Punjab" },
     update: {},
     create: { name: "Punjab" },
   });
 
-  const vehari = await prisma.territory.upsert({
+  await prisma.territory.upsert({
     where: { id: "terr-vehari" },
     update: {},
     create: {
@@ -38,8 +37,8 @@ async function main() {
     },
   });
 
-  // 3. Create Sample Products & Batches
-  const p1 = await prisma.product.upsert({
+  // 3. Create Sample Products
+  await prisma.product.upsert({
     where: { itemCode: "SOL-600" },
     update: {},
     create: {
@@ -49,8 +48,8 @@ async function main() {
       dosageForm: "Tablet",
       strength: "600mg",
       packSize: "10's",
-      tradePrice: 1250.00,
-      mrp: 1470.00,
+      tradePrice: 1250.0,
+      mrp: 1470.0,
       batches: {
         create: [
           {
@@ -63,31 +62,7 @@ async function main() {
     },
   });
 
-  const p2 = await prisma.product.upsert({
-    where: { itemCode: "AYA-500" },
-    update: {},
-    create: {
-      itemCode: "AYA-500",
-      brandName: "AYACIN",
-      genericName: "Ciprofloxacin",
-      dosageForm: "Tablet",
-      strength: "500mg",
-      packSize: "10's",
-      tradePrice: 380.00,
-      mrp: 450.00,
-      batches: {
-        create: [
-          {
-            batchNo: "AYA2409",
-            expiryDate: new Date("2026-06-30"),
-            quantityInStock: 1200,
-          },
-        ],
-      },
-    },
-  });
-
-  console.log("Database seeded successfully with initial products, admin, and regions.");
+  console.log("Database seeded successfully.");
 }
 
 main()
