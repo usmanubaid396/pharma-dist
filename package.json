@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "^14.0.0",
@@ -25,13 +24,9 @@
     "@react-three/fiber": "^8.14.0",
     "@react-three/drei": "^9.88.0",
     "@supabase/supabase-js": "^2.38.0",
-    "@supabase/auth-helpers-nextjs": "^0.8.0",
-    "@supabase/auth-helpers-react": "^0.4.0",
     "zustand": "^4.4.0",
     "framer-motion": "^10.16.0",
-    "lenis": "^1.0.0",
     "react-hot-toast": "^2.4.1",
-    "axios": "^1.6.0",
     "classnames": "^2.3.0"
   },
   "devDependencies": {
